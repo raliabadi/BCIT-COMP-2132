@@ -48,52 +48,51 @@ class Results {
 
     updateHangmanImage() {
 
-        hangmanImage.src = imageFolder + `hangman-0${currentIncorrectGuesses}.png`;
-
-        // Hide the image for a brief moment to allow fade-out effect
-        // hangmanImage.classList.remove('fade-in');
-        // hangmanImage.classList.add('fade-out');
-
-        // After a short delay, update the image source and fade it back in
-        // setTimeout(() => {
-        //     hangmanImage.src = imageFolder + `hangman-0${currentIncorrectGuesses}.png`;
-        //     hangmanImage.classList.remove('fade-out');
-        //     hangmanImage.classList.add('fade-in');
-        // }, 300);
+        if (currentIncorrectGuesses <= maxIncorrectGuesses) {
+            hangmanImage.src = imageFolder + `hangman-0${currentIncorrectGuesses}.png`;
+        }
     }
 
     //==================================================
     // Updates the results based on the current guess.
     updateResults() {
 
-        if (0 < indexList.length) {
-            // Correct guess. Character was found in the word. Update the masked word.
-            indexList.forEach( function(index) {
-                maskedWord = maskedWord.substring(0, index) + word.charAt(index) + maskedWord.substring(index + 1);
-            } );
+        if (!gameCompleted) {
+            if (0 < indexList.length) {
+                // Correct guess. Character was found in the word. Update the masked word.
+                indexList.forEach( function(index) {
+                    maskedWord = maskedWord.substring(0, index) + word.charAt(index) + maskedWord.substring(index + 1);
+                } );
 
-            mysteryWord.innerText = maskedWord;
+                mysteryWord.innerText = maskedWord;
 
-            if (maskedWord === word) {
-                splashSound.play();
-                setTimeout(() => this.displayResultsPopup(`Congratulations!\nYou've guessed the word: ${word}\nYou saved Stix from the gallows!`), 100);
-            }
-        } else {
-            // Incorrect guess. Update the hangman image and incorrect guesses count.
-            currentIncorrectGuesses += 1;
-            incorrectGuesses.innerText = `Incorrect Guesses: ${currentIncorrectGuesses}/${maxIncorrectGuesses}`;
-            this.updateHangmanImage();
-
-            if (currentIncorrectGuesses >= maxIncorrectGuesses) {
-                // Game over. Player exceeded maximum incorrect guesses.
-                hangedSound.play();
-                setTimeout(() => this.displayResultsPopup(`Game Over for Stix.\nSorry for your loss!\nThe mystery word was: ${word}`), 100);
+                if (maskedWord === word) {
+                    // Player has guessed the entire word correctly.
+                    gameCompleted = true;
+                    splashSound.play();
+                    setTimeout(() => this.displayResultsPopup(`Congratulations!\nYou've guessed the word: ${word}\nYou saved Stix from the gallows!`), 100);
+                }
             } else {
-                // Play missed sound for incorrect guess.
-                missedSound.play();
+                // Incorrect guess. Update the hangman image and incorrect guesses count.
+                if (currentIncorrectGuesses < maxIncorrectGuesses) {
+                    currentIncorrectGuesses += 1;
+                    incorrectGuesses.innerText = `Incorrect Guesses: ${currentIncorrectGuesses}/${maxIncorrectGuesses}`;
+
+                    this.updateHangmanImage();
+
+                    if (currentIncorrectGuesses >= maxIncorrectGuesses) {
+                        // Game over. Player exceeded maximum incorrect guesses.
+                        gameCompleted = true;
+                        hangedSound.play();
+                        setTimeout(() => this.displayResultsPopup(`Game Over for Stix.\nSorry for your loss!\nThe mystery word was: ${word}`), 100);
+                    } else {
+                        // Play missed sound for incorrect guess.
+                        missedSound.play();
+                    }
+                }
             }
         }
-    };
+    }
 }
 
 const results = new Results();

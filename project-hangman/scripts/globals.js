@@ -20,6 +20,7 @@ const splashSound = new Audio('sounds/splash.wav');
 // Global settings
 const maxIncorrectGuesses = 6;
 
+let gameCompleted = false;
 let currentIncorrectGuesses = 0;
 let wordIndex = 1;
 let errorMsg = "";
