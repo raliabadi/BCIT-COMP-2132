@@ -1,0 +1,334 @@
+/* ==================================================
+// Reza Aliabadi
+// A00246633
+// BCIT COMP-2132
+//================================================== */
+/* Document */
+/*==================================================*/
+/*==================================================*/
+/*==================================================*/
+/* Global settings and initializations */
+/*==================================================*/
+/*==================================================*/
+/* Apply a natural box layout model to all elements, */
+/* but allowing components to change. */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3 {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+/*==================================================*/
+/* Mobile phone layout - Default */
+/*==================================================*/
+/*==================================================*/
+/* Body layout */
+/*==================================================*/
+/* Body header layout */
+header {
+  height: 5rem;
+  width: 100%;
+  justify-content: left;
+  align-content: center;
+  color: white;
+  background-color: maroon;
+  padding: 0 0 0 1rem;
+}
+
+.site-header h1 {
+  align-self: center;
+}
+
+/*==================================================*/
+/* On-screen keyboard styles */
+.cls-keyboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 0.1rem;
+}
+
+.cls-keys {
+  color: white;
+  background-color: maroon;
+  font-weight: bold;
+  border-radius: 5px;
+  min-width: 2rem;
+  height: auto;
+}
+
+.cls-keys:hover {
+  color: black;
+  background-color: #d7d7d7;
+}
+
+.cls-keys.clicked {
+  color: black;
+  background-color: #d7d7d7;
+  cursor: not-allowed;
+}
+
+/*==================================================*/
+/* Custom Alert Modal */
+.dialog-container {
+  position: relative;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.modal-dialog {
+  position: absolute;
+  top: 20rem;
+  left: 0;
+  padding: 1.5rem;
+  border: 3px solid black;
+  border-radius: 9px;
+  box-shadow: 0 4px 6px #5a5757;
+  width: 50%;
+  max-width: 400px;
+}
+
+/* Style the overlay behind the modal */
+.modal-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog p {
+  margin-bottom: 1rem;
+  white-space: pre-line;
+}
+
+.modal-dialog button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/*==================================================*/
+/* Fade-in and fade-out animations */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/*==================================================*/
+/* Body main layout */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "sec-01" "sec-02" "sec-03";
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  border: 5px solid #ccc;
+  border-radius: 9px;
+  width: 100%;
+  padding: 1rem;
+  gap: 0.2rem;
+}
+
+/*==================================================*/
+/* Section 1 */
+.section-1 {
+  grid-area: sec-01;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  min-width: 24rem;
+  height: auto;
+  padding: 0.2rem;
+}
+
+.section-1-items {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 9px;
+  box-shadow: 2px 2px 5px #5a5757;
+  justify-self: center;
+  width: 100%;
+  max-width: 48rem;
+  padding: 1rem;
+}
+
+.hangman-image {
+  min-width: 14rem;
+}
+
+/*==================================================*/
+/* Section 2 */
+.section-2 {
+  grid-area: sec-02;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  min-width: 24rem;
+  height: auto;
+  padding: 0.2rem;
+}
+
+.section-2-items {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  justify-self: center;
+  background-color: #f7f7f7;
+  border: 1px solid black;
+  border-radius: 9px;
+  box-shadow: 2px 2px 5px #5a5757;
+  width: 100%;
+  max-width: 48rem;
+  height: auto;
+  padding: 1rem;
+}
+
+.mystery-word {
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 1rem;
+  margin: 0.2rem;
+}
+
+.mystery-word-hint {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.incorrect-guesses {
+  font-size: 1.2rem;
+  background-color: lightcoral;
+  border: 0.2rem solid maroon;
+  border-radius: 5px;
+  min-width: 20rem;
+  max-width: 30rem;
+  height: auto;
+  text-align: center;
+}
+
+/*==================================================*/
+/* Section 3 */
+.section-3 {
+  grid-area: sec-03;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  width: 80%;
+  min-width: 24rem;
+  height: auto;
+  padding: 0.2rem;
+}
+
+.section-3-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  border: 1px solid black;
+  border-radius: 9px;
+  box-shadow: 2px 2px 5px #5a5757;
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  padding: 1rem;
+}
+
+.section-3-description {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  text-align: left;
+  width: 100%;
+  max-width: 38rem;
+  height: auto;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+}
+
+/*==================================================*/
+/* Footer layout */
+/*==================================================*/
+footer {
+  color: darkolivegreen;
+  background-color: lightgrey;
+}
+
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  padding: 3rem;
+  border-bottom: black solid 1px;
+}
+
+.footer-copyright {
+  background-color: lightgray;
+  min-height: 2.5rem;
+  text-justify: center;
+}
+
+.footer-copyright p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+/*==================================================*/
+/* Tablet layout */
+/*==================================================*/
+@media only screen and (min-width: 48em) {
+  /*==================================================*/
+  /* Main layout */
+  /* Section 1 */
+  /* Section 2 */
+  /* Section 3 */
+  /*==================================================*/
+  /* Footer layout */
+}
+/*==================================================*/
+/* Desktop layout */
+/*==================================================*/
+@media only screen and (min-width: 64em) {
+  /*==================================================*/
+  /* Main layout */
+  /* Section 1 */
+  /* Section 2 */
+  /* Section 3 */
+  /*==================================================*/
+  /* Footer layout */
+}
+/*==================================================*/
+/* END OF FILE */
+/*==================================================*/

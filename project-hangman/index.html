@@ -1,0 +1,142 @@
+<!-- ==================================================
+// Reza Aliabadi
+// A00246633
+// BCIT COMP-2132
+// Final Project: Hangman Game
+//================================================== -->
+<!DOCTYPE html>
+<html lang="en">
+	<!--==================================================-->
+	<!-- Head layout -->
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>COMP-2132 Project Hangman</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" href="/images/favicon.png"/>
+		<link rel="stylesheet" href="./css/style.css">
+
+		<script src="scripts/jquery-3.7.0.min.js" defer></script>
+		<script src="./scripts/globals.js" defer></script>
+		<script src="./scripts/results.js" defer></script>
+		<script src="./scripts/keyboard.js" defer></script>
+		<script src="./scripts/main.js" defer></script>
+	</head>
+	<!--==================================================-->
+	<!-- Body layout -->
+	<body>
+		<!--==================================================-->
+		<!-- Body header layout -->
+		<header class="site-header" id="id-page-top">
+			<h1>Project Hangman</h1>
+		</header>
+		<!--==================================================-->
+		<!-- Body main layout -->
+		<main class="main-container">
+			<!--==================================================-->
+			<!-- Section 1: Hangman Image -->
+			<section class="section-1">
+				<!--==================================================-->
+				<div class="section-1-items">
+					<!--==================================================-->
+					<!-- Hangman image -->
+					<div>
+						<img class="hangman-image" id="id-hangman-image" src="images/hangman-00.png" alt="Hangman">
+					</div>
+				</div>
+			</section>
+			<!--==================================================-->
+			<!-- Section 2: Results -->
+			<section class="section-2">
+				<!--==================================================-->
+				<div class="section-2-items">
+					<!--==================================================-->
+					<div class="mystery-word" id="id-mystery-word">
+						<p>Word</p>
+					</div>
+					<!--==================================================-->
+					<div class="mystery-word-hint" id="id-mystery-word-hint">
+						<p>Hint</p>
+					</div>
+					<!--==================================================-->
+					<div class="incorrect-guesses" id="id-incorrect-guesses">
+						<p>Incorrect Guesses</p>
+					</div>
+				</div>
+			</section>
+			<!--==================================================-->
+			<!-- Section 3: Keyboard -->
+			<section class="section-3">
+				<!--==================================================-->
+				<div class="section-3-items">
+					<!--==================================================-->
+					<!-- Keyboard -->
+					<div class="cls-keyboard" id="id-keyboard-row-01">
+						<button class="cls-keys cls-key-q" id="id-key-q">Q</button>
+						<button class="cls-keys cls-key-w" id="id-key-w">W</button>
+						<button class="cls-keys cls-key-e" id="id-key-e">E</button>
+						<button class="cls-keys cls-key-r" id="id-key-r">R</button>
+						<button class="cls-keys cls-key-t" id="id-key-t">T</button>
+						<button class="cls-keys cls-key-y" id="id-key-y">Y</button>
+						<button class="cls-keys cls-key-u" id="id-key-u">U</button>
+						<button class="cls-keys cls-key-i" id="id-key-i">I</button>
+						<button class="cls-keys cls-key-o" id="id-key-o">O</button>
+						<button class="cls-keys cls-key-p" id="id-key-p">P</button>
+					</div>
+					<div class="cls-keyboard" id="id-keyboard-row-02">
+						<button class="cls-keys cls-key-a" id="id-key-a">A</button>
+						<button class="cls-keys cls-key-s" id="id-key-s">S</button>
+						<button class="cls-keys cls-key-d" id="id-key-d">D</button>
+						<button class="cls-keys cls-key-f" id="id-key-f">F</button>
+						<button class="cls-keys cls-key-g" id="id-key-g">G</button>
+						<button class="cls-keys cls-key-h" id="id-key-h">H</button>
+						<button class="cls-keys cls-key-j" id="id-key-j">J</button>
+						<button class="cls-keys cls-key-k" id="id-key-k">K</button>
+						<button class="cls-keys cls-key-l" id="id-key-l">L</button>
+					</div>
+					<div class="cls-keyboard" id="id-keyboard-row-03">
+						<button class="cls-keys cls-key-z" id="id-key-z">Z</button>
+						<button class="cls-keys cls-key-x" id="id-key-x">X</button>
+						<button class="cls-keys cls-key-c" id="id-key-c">C</button>
+						<button class="cls-keys cls-key-v" id="id-key-v">V</button>
+						<button class="cls-keys cls-key-b" id="id-key-b">B</button>
+						<button class="cls-keys cls-key-n" id="id-key-n">N</button>
+						<button class="cls-keys cls-key-m" id="id-key-m">M</button>
+						<button class="cls-keys cls-key-dash" id="id-key-dash">-</button>
+					</div>
+				</div>
+				<div class="section-3-description">
+					<p>Use the above key pad to guess the letters from the mystery word. You have 6 chances to guess the entire word.<br>If you fail, the game is over, and the consequences will not be pleasant for our friend <b>Stix</b>.</p>
+				</div>
+			</section>
+			<!--==================================================-->
+			<!-- Popup Dialog -->
+			<!-- Using a form with method="dialog" automatically closes the dialog when submitted -->
+			<div class="dialog-container">
+				<dialog class="modal-dialog" id="id-modal-dialog">
+					<p id="id-alert-message"></p>
+					<form method="dialog">
+						<button id="close-dialog-button" onclick="resetWindow()">Play Again</button>
+					</form>
+				</dialog>
+			</div>
+		</main>
+		<!--==================================================-->
+		<!-- Body footer layout -->
+		<footer>
+			<div class="footer-content">
+			</div>
+			<!-- Footer copyright, internal, and external links -->
+			<div class="footer-copyright">
+				<p>Copyright &copy; 2025 by Reza Aliabadi. All rights reserved.</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<!--==================================================-->
+<!-- END OF FILE -->
+<!--==================================================-->
