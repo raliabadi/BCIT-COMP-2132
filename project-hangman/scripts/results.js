@@ -17,6 +17,19 @@ const incorrectGuesses    = document.getElementById("id-incorrect-guesses");
 
 class Results {
 
+    constructor() {
+        // console.log("In Results constructor()");
+
+        this.displayIncorrectGuesses();
+    }
+
+    //==================================================
+    // Displays the current number of incorrect guesses.
+    displayIncorrectGuesses() {
+
+        incorrectGuesses.innerText = `Incorrect Guesses: ${currentIncorrectGuesses}/${maxIncorrectGuesses}`;
+    };
+
     //==================================================
     // Sets the initial masked word and hint.
     setInitialMaskedWord(word, hint) {
@@ -46,9 +59,11 @@ class Results {
         }, 900);
     }
 
+    //==================================================
+    // Updates the hangman image based on incorrect guesses.
     updateHangmanImage() {
 
-        if (currentIncorrectGuesses <= maxIncorrectGuesses) {
+        if ((!gameCompleted) && (currentIncorrectGuesses <= maxIncorrectGuesses)) {
             hangmanImage.src = imageFolder + `hangman-0${currentIncorrectGuesses}.png`;
         }
     }
@@ -75,8 +90,9 @@ class Results {
             } else {
                 // Incorrect guess. Update the hangman image and incorrect guesses count.
                 if (currentIncorrectGuesses < maxIncorrectGuesses) {
+
                     currentIncorrectGuesses += 1;
-                    incorrectGuesses.innerText = `Incorrect Guesses: ${currentIncorrectGuesses}/${maxIncorrectGuesses}`;
+                    this.displayIncorrectGuesses();
 
                     this.updateHangmanImage();
 
@@ -94,8 +110,6 @@ class Results {
         }
     }
 }
-
-const results = new Results();
 
 //==================================================
 // END OF FILE

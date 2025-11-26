@@ -62,21 +62,21 @@ class Keyboard {
     // Handles key press event for the specified key.
     keyPressed(key) {
 
-        console.log(`Key pressed: ${key.innerText}`);
+        if ((!gameCompleted) && (currentIncorrectGuesses <= maxIncorrectGuesses)) {
+            console.log(`Key pressed: ${key.innerText}`);
 
-        // Disable the pressed key and set it to the pressed colors.
-        key.disabled = true;
-        key.classList.add("clicked");
+            // Disable the pressed key and set it to the pressed colors.
+            key.disabled = true;
+            key.classList.add("clicked");
 
-        indexList = this.findAllSubstringIndices(word, key.innerText);
+            indexList = this.findAllSubstringIndices(word, key.innerText);
 
-        console.log(`Key pressed: ${key.innerText}, indexList: ${indexList}`);
+            console.log(`Key pressed: ${key.innerText}, indexList: ${indexList}`);
 
-        results.updateResults();
+            results.updateResults();
+        }
     }
 }
-
-const keyboard = new Keyboard();
 
 //==================================================
 // Event handlers

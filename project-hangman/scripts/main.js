@@ -14,7 +14,9 @@
 // Ensures code runs after the DOM is fully loaded.
 $(document).ready(function() {
 
-    incorrectGuesses.innerText = `Incorrect Guesses: ${currentIncorrectGuesses}/${maxIncorrectGuesses}`;
+    // results.displayIncorrectGuesses();
+    results = new Results();
+    keyboard = new Keyboard();
 });
 
 //==================================================
@@ -32,7 +34,7 @@ function resetWindow() {
 // Loads the word list from the JSON file.
 async function loadData() {
 
-    // console.log("In loadData()");
+    console.log(`In loadData() - fetching from: ${fetch_file_location}`);
 
     try {
         const response = await fetch(fetch_file_location);
