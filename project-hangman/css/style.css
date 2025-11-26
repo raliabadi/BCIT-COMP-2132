@@ -92,7 +92,7 @@ header {
 /* Custom Alert Modal */
 .dialog-container {
   position: relative;
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000; /* Ensure it's above all other content */
 }
 
 .modal-dialog {
